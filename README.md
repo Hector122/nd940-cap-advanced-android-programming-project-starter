@@ -1,10 +1,22 @@
-# README Template
+# Political Preparedness
 
-Below is a template provided for use when building your README file for students.
+PolitcalPreparedness is an example application built to demonstrate core Android Development skills as presented in the Udacity Android Developers Kotlin curriculum.
+
+This app demonstrates the following views and techniques:
+
+Retrofit to make api calls to an HTTP web service.
+Moshi which handles the deserialization of the returned JSON to Kotlin data objects.
+Glide to load and cache images by URL.
+Room for local database storage.
 
 # Project Title
 
-Project description goes here.
+It leverages the following components from the Jetpack library:
+
+ViewModel
+LiveData
+Data Binding with binding adapters
+Navigation with the SafeArgs plugin for parameter passing between fragments
 
 ## Getting Started
 
