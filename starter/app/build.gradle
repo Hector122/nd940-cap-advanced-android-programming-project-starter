@@ -80,5 +80,5 @@ dependencies {
     implementation "com.google.android.gms:play-services-location:$version_play_services_location"
 
     //material components
-    implementation "com.google.android.material:material:$version_material_component"
+   // implementation "com.google.android.material:material:$version_material_component"
 }

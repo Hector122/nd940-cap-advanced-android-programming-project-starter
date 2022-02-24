@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="election"
+            type="com.example.android.politicalpreparedness.network.models.Election" />
+
+        <variable
+            name="clickListener"
+            type="com.example.android.politicalpreparedness.election.adapter.ElectionListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--TODO: move text to string -->
+        <TextView
+            android:id="@+id/electionName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{election.name}"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="VIP Test Election" />
+
+        <TextView
+            android:id="@+id/electionDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{election.electionDay.toString()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/electionName"
+            tools:text="Mon Feb 05 00:00:00 EDT 2022" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
