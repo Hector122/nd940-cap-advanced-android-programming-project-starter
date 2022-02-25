@@ -26,6 +26,8 @@ class ElectionListAdapter(private val clickListener: ElectionListener) :
     //completed: Create ElectionViewHolder
     class ElectionViewHolder private constructor(private val binding: ListItemElectionBinding) :
         RecyclerView.ViewHolder(binding.root) {
+    
+        var x:String = ""
         
         fun bind(item: Election, clickListener: ElectionListener) {
             binding.election = item
