@@ -37,13 +37,20 @@ class RepresentativeViewHolder(val binding: ListItemRepresentativeBinding) :
         binding.representative = item
         binding.representativePhoto.setImageResource(R.drawable.ic_profile)
         
-        //TODO: Show social links ** Hint: Use provided helper methods
-        //TODO: Show www link ** Hint: Use provided helper methods
+        //completed: Show social links ** Hint: Use provided helper methods
+        item.official.channels?.let {
+            showSocialLinks(it)
+        }
+        
+        //completed: Show www link ** Hint: Use provided helper methods
+        item.official.urls?.let {
+            showWWWLinks(it)
+        }
         
         binding.executePendingBindings()
     }
     
-    //TODO: Add companion object to inflate ViewHolder (from)
+    //completed: Add companion object to inflate ViewHolder (from)
     companion object {
         fun from(parent: ViewGroup): RepresentativeViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)

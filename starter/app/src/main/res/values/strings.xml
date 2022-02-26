@@ -14,4 +14,13 @@
     <string name="follow_election">Follow Election</string>
     <string name="unfollow_election">Unfollow Election</string>
 
+    <string name="permission_denied_explanation">You need to grant location permission in order to select the location.</string>
+    <string name="settings">Settings</string>
+    <string name="address_line_one">Address Line 1</string>
+    <string name="address_line_two">Address Line 2</string>
+    <string name="city">City</string>
+    <string name="alabama">Alabama</string>
+    <string name="zip">Zip</string>
+    <string name="use_my_location">Use my location</string>
+    <string name="my_representatives">My representatives</string>
 </resources>
