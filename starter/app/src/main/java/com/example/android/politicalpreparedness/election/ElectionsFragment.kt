@@ -12,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.android.politicalpreparedness.databinding.FragmentElectionBinding
 import com.example.android.politicalpreparedness.election.adapter.ElectionListAdapter
 import com.example.android.politicalpreparedness.election.adapter.ElectionListener
-import com.example.android.politicalpreparedness.network.models.Election
 
 class ElectionsFragment : Fragment() {
     
@@ -40,18 +39,25 @@ class ElectionsFragment : Fragment() {
         
         
         //TODO: Link elections to voter info
+        viewModel.navigateToVoterInfo.observe(viewLifecycleOwner, Observer { election ->
+            election?.let {
+                findNavController().navigate(ElectionsFragmentDirections.actionElectionsFragmentToVoterInfoFragment(election.id, election.division))
+                
+                viewModel.onVoterInfoNavigated()
+            }
+        })
         
         
         //TODO: Initiate recycler adapters
         //Upcoming adapter
         upComingElectionsAdapter = ElectionListAdapter(ElectionListener { election ->
-            viewModel.onElectionSelected(election)
+            viewModel.onElectionClicked(election)
         })
         binding.recyclerViewUpcomingElections.adapter = upComingElectionsAdapter
         
         //Saved Election
         savedElectionsAdapter = ElectionListAdapter(ElectionListener { election ->
-            viewModel.onElectionSelected(election)
+            viewModel.onElectionClicked(election)
         })
         binding.recyclerViewSavedElections.adapter = savedElectionsAdapter
         
@@ -67,11 +73,6 @@ class ElectionsFragment : Fragment() {
                 savedElectionsAdapter.submitList(it)
             }
         })
-
-
-//        viewModel.navigateToVoterInfo.observe(viewLifecycleOwner, Observer {
-//            election -> findNavController().navigate()
-//        })
         
         return binding.root
     }
