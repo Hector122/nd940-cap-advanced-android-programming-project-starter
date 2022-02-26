@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="election"
             type="com.example.android.politicalpreparedness.network.models.Election" />
@@ -15,7 +16,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <!--TODO: move text to string -->
         <TextView
@@ -32,7 +33,9 @@
             android:id="@+id/electionDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:text="@{election.electionDay.toString()}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/electionName"
             tools:text="Mon Feb 05 00:00:00 EDT 2022" />

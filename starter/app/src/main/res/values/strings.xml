@@ -5,6 +5,7 @@
     <!-- TODO: Add necessary string values -->
     <string name="upcoming_election">Upcoming elections</string>
     <string name="find_my_representatives">Find my representatives</string>
+    <string name="saved_elections">Saved elections</string>
 
     <string name="vote_image_description"/>
 
