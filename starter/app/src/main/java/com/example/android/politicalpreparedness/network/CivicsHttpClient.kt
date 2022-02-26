@@ -1,6 +1,7 @@
 package com.example.android.politicalpreparedness.network
 
 import okhttp3.OkHttpClient
+import java.util.logging.Level
 
 class CivicsHttpClient : OkHttpClient() {
     
@@ -27,3 +28,13 @@ class CivicsHttpClient : OkHttpClient() {
         }
     }
 }
+//
+//
+//// set your desired log level
+//logging.setLevel(Level.BODY);
+//
+//OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+//// add your other interceptors …
+//
+//// add logging as last interceptor
+//httpClient.addInterceptor(logging);  // <-- this is the important line!

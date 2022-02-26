@@ -43,8 +43,9 @@ interface CivicsApiService {
     
     //completed: Add voterinfo API Call
     @GET("voterinfo")
-    fun getVoterInfoAsync(@Query("electionId") electionId: Int,
-                    @Query("address") address: String): Deferred<VoterInfoResponse>
+    fun getVoterInfoAsync(
+            @Query("address") address: String,
+            @Query("electionId") electionId: Int): Deferred<VoterInfoResponse>
     
     //completed: Add representatives API Call
     @GET("representatives")
