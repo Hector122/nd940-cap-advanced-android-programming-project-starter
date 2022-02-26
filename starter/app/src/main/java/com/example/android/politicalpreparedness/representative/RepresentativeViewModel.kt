@@ -22,12 +22,6 @@ class RepresentativeViewModel : ViewModel() {
     val address: LiveData<Address>
         get() = _address
     
-    
-    init {
-        // init an empty address to avoid a crash TypeCastException
-        _address.value = Address("", "", "", "Alabama","")
-    }
-    
     //completed: Create function to fetch representatives from API from a provided address
      fun getRepresentatives(address: String) {
         viewModelScope.launch {

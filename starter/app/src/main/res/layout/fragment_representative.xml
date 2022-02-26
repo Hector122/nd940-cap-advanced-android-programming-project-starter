@@ -5,6 +5,7 @@
 
     <!-- completed: Add data binding node -->
     <data>
+
         <variable
             name="viewModel"
             type="com.example.android.politicalpreparedness.representative.RepresentativeViewModel" />
@@ -31,8 +32,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints="@string/address_line_one"
-            android:text="@{viewModel.address.line1}"
             android:inputType="textPostalAddress"
+            android:text="@{viewModel.address.line1}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search_title" />
 
@@ -43,8 +44,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:autofillHints="@string/address_line_two"
-            android:text="@{viewModel.address.line2}"
             android:inputType="textPostalAddress"
+            android:text="@{viewModel.address.line2}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/address_line_1" />
 
@@ -55,8 +56,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:autofillHints="@string/city"
-            android:text="@{viewModel.address.city}"
             android:inputType="textPostalAddress"
+            android:text="@{viewModel.address.city}"
             app:layout_constraintEnd_toStartOf="@id/state"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/address_line_2" />
@@ -70,8 +71,9 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:autofillHints="@string/alabama"
-
             android:inputType="textPostalAddress"
+            android:entries="@array/states"
+            stateValue="@{viewModel.address.state}"
             app:layout_constraintBottom_toBottomOf="@id/city"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/city"
@@ -84,9 +86,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:autofillHints="@string/zip"
-            android:text="@{viewModel.address.zip}"
             android:inputType="number"
             android:maxLength="5"
+            android:text="@{viewModel.address.zip}"
             app:layout_constraintEnd_toEndOf="@id/city"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/city" />
@@ -96,21 +98,21 @@
             android:id="@+id/button_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:background="@color/colorPrimary"
             android:layout_margin="30dp"
+            android:background="@color/colorPrimary"
             android:text="@string/find_my_representatives"
+            android:textColor="@color/white"
             app:layout_constraintTop_toBottomOf="@id/zip" />
 
         <!-- TODO: Add visual styling and content -->
         <Button
             android:id="@+id/button_location"
-            android:textColor="@color/white"
-            android:background="@color/colorPrimary"
-            android:layout_margin="30dp"
-            android:text="@string/use_my_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:background="@color/colorPrimary"
+            android:text="@string/use_my_location"
+            android:textColor="@color/white"
             app:layout_constraintTop_toBottomOf="@id/button_search" />
 
         <!-- TODO: Add visual styling and content -->
@@ -118,9 +120,9 @@
             android:id="@+id/representative_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/my_representatives"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             app:layout_constraintStart_toStartOf="parent"
-           android:text="@string/my_representatives"
             app:layout_constraintTop_toBottomOf="@id/button_location" />
 
         <!-- completed: Add Representatives RecyclerView -->
@@ -129,10 +131,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/representative_title"
-            motion:listitem="@layout/list_item_representative"/>
+            motion:listitem="@layout/list_item_representative" />
 
         <!-- TODO: Add visual styling and content -->
         <TextView

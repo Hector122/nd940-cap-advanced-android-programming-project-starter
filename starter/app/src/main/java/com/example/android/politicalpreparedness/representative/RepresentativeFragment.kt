@@ -61,13 +61,6 @@ class DetailFragment : Fragment() {
                 adapter.submitList(it)
             }
         })
-    
-        // Observe the address so that we can populate the spinner with the state
-//        viewModel.address.observe(viewLifecycleOwner, Observer {
-//            it?.let {
-//                binding.state.setNewValue(it.state)
-//            }
-//        })
         
         //completed: Establish button listeners for field and location search
         binding.buttonLocation.setOnClickListener {
