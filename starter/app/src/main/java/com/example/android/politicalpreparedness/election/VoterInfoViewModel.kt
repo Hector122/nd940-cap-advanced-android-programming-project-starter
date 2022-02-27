@@ -1,13 +1,16 @@
 package com.example.android.politicalpreparedness.election
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.android.politicalpreparedness.database.ElectionDatabase
 import com.example.android.politicalpreparedness.election.repository.ElectionRepository
 import com.example.android.politicalpreparedness.network.CivicsApi
 import com.example.android.politicalpreparedness.network.models.Election
 import com.example.android.politicalpreparedness.network.models.VoterInfoResponse
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 class VoterInfoViewModel(application: Application, args: VoterInfoFragmentArgs) :
         AndroidViewModel(application) {
@@ -48,8 +51,13 @@ class VoterInfoViewModel(application: Application, args: VoterInfoFragmentArgs) 
             val address = if (division.state.isNotEmpty()) "${division.state} ${division.country}"
             else division.country
             
-            _voterInfo.value = CivicsApi.retrofitService.getVoterInfoAsync(address, electionId)
-                .await()
+            try {
+                _voterInfo.value = CivicsApi.retrofitService.getVoterInfoAsync(address, electionId)
+                    .await()
+            } catch (exception:HttpException){
+                _voterInfo.value = null
+                Log.e("VoterInfoViewModel" , "URL unavailable")
+            }
         }
     }
     

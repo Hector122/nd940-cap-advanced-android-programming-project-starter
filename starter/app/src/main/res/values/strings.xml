@@ -16,6 +16,7 @@
 
     <string name="permission_denied_explanation">You need to grant location permission in order to select the location.</string>
     <string name="location_required_error">Location services must be enabled to use my location button</string>
+    <string name="request_error">Url services not available</string>
     <string name="fill_all_fields">All the fields need to be filled</string>
     <string name="settings">Settings</string>
     <string name="address_line_one">Address Line 1</string>

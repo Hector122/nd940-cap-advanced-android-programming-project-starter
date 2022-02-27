@@ -213,11 +213,7 @@ class DetailFragment : Fragment() {
         val geocoder = Geocoder(context, Locale.getDefault())
         return geocoder.getFromLocation(location.latitude, location.longitude, 1)
             .map { address ->
-                if (address != null) {
-                    Address(address.thoroughfare, address.subThoroughfare, address.locality, address.adminArea, address.postalCode)
-                } else {
-                    Address("", "", "", "", "")
-                }
+                Address(address.thoroughfare, address.subThoroughfare, address.locality, address.adminArea, address.postalCode)
             }
             .first()
     }
