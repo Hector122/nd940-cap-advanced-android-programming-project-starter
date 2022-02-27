@@ -15,7 +15,6 @@ class ElectionsViewModel(application: Application) : AndroidViewModel(applicatio
     private val database = ElectionDatabase.getInstance(application)
     private val repository = ElectionRepository(database)
     
-    
     //completed: Create live data val for upcoming elections
     private val _upcomingElection = MutableLiveData<List<Election>>()
     val upcomingElection: LiveData<List<Election>> get() = _upcomingElection
@@ -27,17 +26,15 @@ class ElectionsViewModel(application: Application) : AndroidViewModel(applicatio
     private val _navigateToVoterInfo = MutableLiveData<Election>()
     val navigateToVoterInfo: LiveData<Election> get() = _navigateToVoterInfo
     
-    //TODO: Create val and functions to populate live data
+    //completed: Create val and functions to populate live data
     // for upcoming elections from the API and saved elections from local database
     init {
-        //getSavedElection()
-        
         getUpcomingElections()
     }
     
     private fun getSavedElection() {
         viewModelScope.launch {
-          //  _savedElections.value = database.electionDao.getAllElections().value
+          // _savedElections.value = database.electionDao.getAllElections().value
         }
     }
     
@@ -49,9 +46,8 @@ class ElectionsViewModel(application: Application) : AndroidViewModel(applicatio
         }
     }
     
-    
-    //TODO: Create functions to navigate to saved or upcoming election voter info
-    fun onElectionClicked(election: Election) {
+    //completed: Create functions to navigate to saved or upcoming election voter info
+    fun navigateToVoterInfo(election: Election) {
         _navigateToVoterInfo.value = election
     }
     

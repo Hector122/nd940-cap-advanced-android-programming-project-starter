@@ -15,6 +15,9 @@ class VoterInfoViewModel(application: Application, args: VoterInfoFragmentArgs) 
     private val database = ElectionDatabase.getInstance(application)
     private val repository = ElectionRepository(database)
     
+    private val division = args.argDivision
+    private val electionId = args.argElectionId
+    
     //completed Add live data to hold voter info
     private val _voterInfo = MutableLiveData<VoterInfoResponse>()
     val voterInfo: LiveData<VoterInfoResponse> get() = _voterInfo
@@ -32,11 +35,7 @@ class VoterInfoViewModel(application: Application, args: VoterInfoFragmentArgs) 
     val isElectionSaved: LiveData<Boolean>
         get() = _isElectionSaved
     
-    //TODO: Add var and methods to populate voter info
-    // saved election info from database
-    private val division = args.argDivision
-    private val electionId = args.argElectionId
-    
+    //completed: Add var and methods to populate voter info
     init {
         getVoterInfo()
         
@@ -46,25 +45,13 @@ class VoterInfoViewModel(application: Application, args: VoterInfoFragmentArgs) 
     //https://knowledge.udacity.com/questions/507353
     private fun getVoterInfo() {
         viewModelScope.launch {
-            var address = "country:${division.country}"
-            // state can be sometimes missing from the division retrieved
-            // from the electionQuery API call,
-            // but have to add some state to the voterinfo API call or it will be rejected
-//            address += if (division.state.isNotBlank() && division.state.isNotEmpty()) {
-//                "/state:${division.state}"
-//            } else {
-//                "/state:ca"
-//            }
-            
-            
-            address = if (division.state.isNotEmpty()) "${division.state} ${division.country}"
+            val address = if (division.state.isNotEmpty()) "${division.state} ${division.country}"
             else division.country
             
             _voterInfo.value = CivicsApi.retrofitService.getVoterInfoAsync(address, electionId)
                 .await()
         }
     }
-    
     
     fun onVotingLocationClick() {
         _votingLocationsUrl.value =
@@ -104,7 +91,6 @@ class VoterInfoViewModel(application: Application, args: VoterInfoFragmentArgs) 
         }
     }
     
-    
     fun onFollowElectionClick() {
         when (_isElectionSaved.value) {
             true -> removeElectionFromDb()
@@ -117,10 +103,6 @@ class VoterInfoViewModel(application: Application, args: VoterInfoFragmentArgs) 
             _isElectionSaved.value = repository.getElectionById(electionId) != null
         }
     }
-    
-    
-    //TODO: Add var and methods to save and remove elections to local database
-    //TODO: cont'd -- Populate initial state of save button to reflect proper action based on election saved status
     
     /**
      * Hint: The saved state can be accomplished in multiple ways.

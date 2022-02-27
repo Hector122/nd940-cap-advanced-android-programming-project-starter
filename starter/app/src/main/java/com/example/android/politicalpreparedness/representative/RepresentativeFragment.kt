@@ -58,6 +58,13 @@ class DetailFragment : Fragment() {
         //completed: Define and assign Representative adapter
         val adapter = RepresentativeListAdapter()
         binding.representativesRecyclerView.adapter = adapter
+    
+        // Observe the address so that we can populate the spinner with the state
+        viewModel.address.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                binding.state.setNewValue(it.state)
+            }
+        })
         
         //completed: Populate Representative adapter
         viewModel.representatives.observe(viewLifecycleOwner, Observer {
@@ -194,11 +201,6 @@ class DetailFragment : Fragment() {
                 getLocation()
             }
         }
-    }
-    
-    
-    private fun promptUserToEnableLocationServices() {
-        //viewModel.setSnackbarMessage(fragmentContext.getString(R.string.location_services_disabled_snackbar))
     }
     
     private fun requestPermissions() {

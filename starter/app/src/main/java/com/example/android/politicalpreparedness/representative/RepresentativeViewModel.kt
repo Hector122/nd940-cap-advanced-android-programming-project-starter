@@ -23,6 +23,11 @@ class RepresentativeViewModel : ViewModel() {
     val address: LiveData<Address>
         get() = _address
     
+    init {
+        //Init address for two way binding
+        _address.value = Address("", "", "", "Alabama", "")
+    }
+    
     //completed: Create function to fetch representatives from API from a provided address
     fun getRepresentatives(address: String) {
         viewModelScope.launch {
@@ -31,14 +36,6 @@ class RepresentativeViewModel : ViewModel() {
             _representatives.value =
                 offices.flatMap { office -> office.getRepresentatives(officials) }
         }
-    }
-    
-    fun areAllAddressFieldsValid(): Boolean {
-        val address = _address.value
-        
-        return !(TextUtils.isEmpty(address?.line1) && TextUtils.isEmpty(address?.line2)
-                && TextUtils.isEmpty(address?.city) && TextUtils.isEmpty(address?.zip)
-                && TextUtils.isEmpty(address?.state))
     }
     
     /**
@@ -57,7 +54,14 @@ class RepresentativeViewModel : ViewModel() {
         _address.value = address
     }
     
-    //TODO: Create function get address from geo location
+    fun areAllAddressFieldsValid(): Boolean {
+        val address = _address.value
+        
+        return !TextUtils.isEmpty(address?.city) && !TextUtils.isEmpty(address?.zip)
+                && !TextUtils.isEmpty(address?.state)
+    }
+    //not need: Create function get address from geo location
     
-    //TODO: Create function to get address from individual fields
+    // completed: Create function to get address from individual fields
+    // implement two way binding in fragment_representative.
 }

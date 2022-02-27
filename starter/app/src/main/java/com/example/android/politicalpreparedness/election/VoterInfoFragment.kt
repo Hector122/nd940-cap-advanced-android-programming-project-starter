@@ -29,7 +29,7 @@ class VoterInfoFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         
-        //TODO: Populate voter info -- hide views without provided data.
+        //completed: Populate voter info -- hide views without provided data.
         /**
         Hint: You will need to ensure proper data is provided from previous fragment.
          */

@@ -17,6 +17,7 @@ class ElectionsFragment : Fragment() {
     
     //completed: Declare ViewModel
     private lateinit var viewModel: ElectionsViewModel
+    private lateinit var binding: FragmentElectionBinding
     
     private lateinit var upComingElectionsAdapter: ElectionListAdapter
     private lateinit var savedElectionsAdapter: ElectionListAdapter
@@ -33,12 +34,12 @@ class ElectionsFragment : Fragment() {
             ViewModelProvider(requireActivity(), viewModelFactory).get(ElectionsViewModel::class.java)
         
         //complete: Add binding values
-        val binding = FragmentElectionBinding.inflate(inflater)
+        binding = FragmentElectionBinding.inflate(inflater)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         
         
-        //TODO: Link elections to voter info
+        //completed: Link elections to voter info
         viewModel.navigateToVoterInfo.observe(viewLifecycleOwner, Observer { election ->
             election?.let {
                 findNavController().navigate(ElectionsFragmentDirections.actionElectionsFragmentToVoterInfoFragment(election.id, election.division))
@@ -47,21 +48,30 @@ class ElectionsFragment : Fragment() {
             }
         })
         
+        //completed: Initiate recycler adapters
+        initiateRecyclerAdapters()
         
-        //TODO: Initiate recycler adapters
+        //completed: Populate recycler adapters
+        populateRecyclerAdapter()
+        
+        return binding.root
+    }
+    
+    private fun initiateRecyclerAdapters() {
         //Upcoming adapter
         upComingElectionsAdapter = ElectionListAdapter(ElectionListener { election ->
-            viewModel.onElectionClicked(election)
+            viewModel.navigateToVoterInfo(election)
         })
         binding.recyclerViewUpcomingElections.adapter = upComingElectionsAdapter
         
         //Saved Election
         savedElectionsAdapter = ElectionListAdapter(ElectionListener { election ->
-            viewModel.onElectionClicked(election)
+            viewModel.navigateToVoterInfo(election)
         })
         binding.recyclerViewSavedElections.adapter = savedElectionsAdapter
-        
-        //TODO: Populate recycler adapters
+    }
+    
+    private fun populateRecyclerAdapter() {
         viewModel.upcomingElection.observe(viewLifecycleOwner, Observer {
             it.let {
                 upComingElectionsAdapter.submitList(it)
@@ -73,21 +83,8 @@ class ElectionsFragment : Fragment() {
                 savedElectionsAdapter.submitList(it)
             }
         })
-        
-        return binding.root
     }
     
-    //TODO: Refresh adapters when fragment loads
-//    private fun setupRecyclerViewAdapters() {
-//        upComingElectionsAdapter = ElectionListAdapter(ElectionListener { election ->
-//            viewModel.onElectionSelected(election)
-//        })
-//        binding.upcomingElectionsRecyclerView.adapter = upComingElectionsAdapterd
-//
-//        savedElectionsAdapter = ElectionListAdapter(ElectionListener { election ->
-//            viewModel.onElectionSelected(election)
-//        })
-//        binding.savedElectionsRecyclerView.adapter = savedElectionsAdapter
-//    }
+    //Not need: Refresh adapters when fragment loads
     
 }
