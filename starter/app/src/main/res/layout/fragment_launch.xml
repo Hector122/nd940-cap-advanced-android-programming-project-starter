@@ -36,10 +36,8 @@
         <Button
             android:id="@+id/representativeButton"
             style="@style/ButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+
             android:layout_marginBottom="@dimen/margin_normal"
-            android:background="@color/colorPrimary"
             android:text="@string/find_my_representatives"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/upcomingButton"

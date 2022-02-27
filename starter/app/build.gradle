@@ -84,4 +84,7 @@ dependencies {
 
     //material components
    // implementation "com.google.android.material:material:$version_material_component"
+
+    //card view
+    implementation "androidx.cardview:cardview:$varsion_card_view"
 }

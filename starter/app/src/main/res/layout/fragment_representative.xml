@@ -17,16 +17,16 @@
         android:layout_height="match_parent"
         app:layoutDescription="@xml/fragment_representative_scene">
 
-        <!-- TODO: Add visual styling and content -->
+        <!-- completed: Add visual styling and content -->
         <TextView
             android:id="@+id/search_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextElectionTitleHeader"
+            android:text="@string/representative_search"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- completed: Add data binding value -->
-        <!-- TODO: Add visual styling and content -->
+        <!-- completed: Add visual styling and content -->
         <EditText
             android:id="@+id/address_line_1"
             android:layout_width="match_parent"
@@ -39,7 +39,7 @@
             app:layout_constraintTop_toBottomOf="@id/search_title" />
 
         <!-- completed: Add data binding value -->
-        <!-- TODO: Add visual styling and content -->
+        <!-- completed: Add visual styling and content -->
         <EditText
             android:id="@+id/address_line_2"
             android:layout_width="match_parent"
@@ -52,7 +52,7 @@
             app:layout_constraintTop_toBottomOf="@id/address_line_1" />
 
         <!-- completed: Add data binding value -->
-        <!-- TODO: Add visual styling and content -->
+        <!-- completed: Add visual styling and content -->
         <EditText
             android:id="@+id/city"
             android:layout_width="0dp"
@@ -65,10 +65,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/address_line_2" />
 
-        <!-- TODO: Add default values from provided resources  -->
+        <!-- completed: Add default values from provided resources  -->
         <!-- completed: Add data binding value -->
-        <!-- TODO: Add visual styling and content -->
-        <!--            stateValue="@{viewModel.address.state}"-->
+        <!-- completed: Add visual styling and content
+                    stateValue="@{viewModel.address.state}"-->
         <Spinner
             android:id="@+id/state"
             stateValue="@{viewModel.address.state}"
@@ -83,7 +83,7 @@
             app:layout_constraintTop_toTopOf="@id/city" />
 
         <!-- completed: Add data binding value -->
-        <!-- TODO: Add visual styling and content -->
+        <!-- completed: Add visual styling and content -->
         <EditText
             android:id="@+id/zip"
             android:layout_width="0dp"
@@ -97,38 +97,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/city" />
 
-        <!-- TODO: Add visual styling and label -->
+        <!-- completed: Add visual styling and label -->
         <Button
             android:id="@+id/button_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:background="@color/colorPrimary"
+            style="@style/ButtonStyleRepresentative"
             android:text="@string/find_my_representatives"
-            android:textColor="@color/white"
             app:layout_constraintTop_toBottomOf="@id/zip" />
 
-        <!-- TODO: Add visual styling and content -->
+        <!-- completed: Add visual styling and content -->
         <Button
             android:id="@+id/button_location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/colorPrimary"
+            style="@style/ButtonStyleRepresentative"
             android:text="@string/use_my_location"
-            android:textColor="@color/white"
             app:layout_constraintTop_toBottomOf="@id/button_search" />
 
-        <!-- TODO: Add visual styling and content -->
+        <!-- completed: Add visual styling and content -->
         <TextView
             android:id="@+id/representative_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            style="@style/TextElectionTitleHeader"
             android:text="@string/my_representatives"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             app:layout_constraintStart_toStartOf="parent"
@@ -145,7 +131,7 @@
             app:layout_constraintTop_toBottomOf="@id/representative_title"
             motion:listitem="@layout/list_item_representative" />
 
-        <!-- TODO: Add visual styling and content -->
+        <!-- completed: Add visual styling and content -->
         <TextView
             android:id="@+id/list_placeholder"
             android:layout_width="match_parent"

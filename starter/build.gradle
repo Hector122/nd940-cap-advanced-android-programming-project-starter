@@ -17,6 +17,7 @@ buildscript {
         version_play_services_location = "17.0.0"
         version_room = "2.2.5"
         version_glide = "4.11.0"
+        varsion_card_view = '1.0.0'
         version_material_component = "1.5.0"
     }
 

@@ -2,10 +2,19 @@
 <resources>
     <dimen name="default_padding">8dp</dimen>
 
-    <!-- TODO: Add necessary dimension values -->
+    <!-- completed: Add necessary dimension values -->
+    <dimen name="margin_top_subtitle">8dp</dimen>
     <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_normal">16dp</dimen>
     <dimen name="margin_large">20dp</dimen>
     <dimen name="margin_top_image_ballot">80dp</dimen>
+    <dimen name="image_size_representative_url">32dp</dimen>
+    <dimen name="button_margin_large">32dp</dimen>
+
+
+    <dimen name="text_size_item_title">16sp</dimen>
+    <dimen name="text_size_button">16sp</dimen>
+    <dimen name="text_size_large">20sp</dimen>
+    <dimen name="text_size_item_subtitle">14sp</dimen>
 
 </resources>
