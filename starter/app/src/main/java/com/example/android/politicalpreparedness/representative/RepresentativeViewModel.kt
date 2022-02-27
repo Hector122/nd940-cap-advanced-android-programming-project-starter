@@ -1,6 +1,8 @@
 package com.example.android.politicalpreparedness.representative
 
 
+import android.os.Message
+import android.text.TextUtils
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +11,6 @@ import com.example.android.politicalpreparedness.network.CivicsApi
 import com.example.android.politicalpreparedness.network.models.Address
 import com.example.android.politicalpreparedness.representative.model.Representative
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class RepresentativeViewModel : ViewModel() {
     
@@ -23,13 +24,21 @@ class RepresentativeViewModel : ViewModel() {
         get() = _address
     
     //completed: Create function to fetch representatives from API from a provided address
-     fun getRepresentatives(address: String) {
+    fun getRepresentatives(address: String) {
         viewModelScope.launch {
             val (offices, officials) = CivicsApi.retrofitService.getRepresentativesAsync(address = address)
                 .await()
             _representatives.value =
                 offices.flatMap { office -> office.getRepresentatives(officials) }
         }
+    }
+    
+    fun areAllAddressFieldsValid(): Boolean {
+        val address = _address.value
+        
+        return !(TextUtils.isEmpty(address?.line1) && TextUtils.isEmpty(address?.line2)
+                && TextUtils.isEmpty(address?.city) && TextUtils.isEmpty(address?.zip)
+                && TextUtils.isEmpty(address?.state))
     }
     
     /**
@@ -43,7 +52,7 @@ class RepresentativeViewModel : ViewModel() {
     Note: _representatives in the above code represents the established mutable live data housing representatives
      
      */
-
+    
     fun setAddressFromGeoLocation(address: Address) {
         _address.value = address
     }
