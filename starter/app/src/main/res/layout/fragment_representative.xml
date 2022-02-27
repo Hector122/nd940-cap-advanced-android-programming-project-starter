@@ -11,11 +11,16 @@
             type="com.example.android.politicalpreparedness.representative.RepresentativeViewModel" />
     </data>
 
-    <!-- TODO: Add motion scene to hide form on vertical scroll. -->
+    <!-- completed: Add motion scene to hide form on vertical scroll. -->
     <androidx.constraintlayout.motion.widget.MotionLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutDescription="@xml/fragment_representative_scene">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/form">
 
         <!-- completed: Add visual styling and content -->
         <TextView
@@ -102,6 +107,8 @@
             android:id="@+id/button_search"
             style="@style/ButtonStyleRepresentative"
             android:text="@string/find_my_representatives"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/zip" />
 
         <!-- completed: Add visual styling and content -->
@@ -109,7 +116,11 @@
             android:id="@+id/button_location"
             style="@style/ButtonStyleRepresentative"
             android:text="@string/use_my_location"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/button_search" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- completed: Add visual styling and content -->
         <TextView
@@ -118,7 +129,7 @@
             android:text="@string/my_representatives"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_location" />
+            app:layout_constraintTop_toBottomOf="@id/form" />
 
         <!-- completed: Add Representatives RecyclerView -->
         <androidx.recyclerview.widget.RecyclerView

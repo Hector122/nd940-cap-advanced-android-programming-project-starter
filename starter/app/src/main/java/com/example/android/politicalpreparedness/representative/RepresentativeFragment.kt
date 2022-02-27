@@ -58,7 +58,7 @@ class DetailFragment : Fragment() {
         //completed: Define and assign Representative adapter
         val adapter = RepresentativeListAdapter()
         binding.representativesRecyclerView.adapter = adapter
-    
+        
         // Observe the address so that we can populate the spinner with the state
         viewModel.address.observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -153,8 +153,10 @@ class DetailFragment : Fragment() {
         //completed: Get location from LocationServices
         LocationServices.getFusedLocationProviderClient(requireContext()).lastLocation.addOnSuccessListener { location ->
             //completed: The geoCodeLocation method is a helper function to change the lat/long location to a human readable street address
-            viewModel.setAddressFromGeoLocation(geoCodeLocation(location))
-            viewModel.getRepresentatives(viewModel.address.value.toString())
+            if (location != null) {
+                viewModel.setAddressFromGeoLocation(geoCodeLocation(location))
+                viewModel.getRepresentatives(viewModel.address.value.toString())
+            }
         }
     }
     
@@ -211,7 +213,11 @@ class DetailFragment : Fragment() {
         val geocoder = Geocoder(context, Locale.getDefault())
         return geocoder.getFromLocation(location.latitude, location.longitude, 1)
             .map { address ->
-                Address(address.thoroughfare, address.subThoroughfare, address.locality, address.adminArea, address.postalCode)
+                if (address != null) {
+                    Address(address.thoroughfare, address.subThoroughfare, address.locality, address.adminArea, address.postalCode)
+                } else {
+                    Address("", "", "", "", "")
+                }
             }
             .first()
     }
