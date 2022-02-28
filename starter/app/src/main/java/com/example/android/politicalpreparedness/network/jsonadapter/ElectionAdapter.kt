@@ -13,7 +13,9 @@ class ElectionAdapter {
                 .substringBefore("/")
         val state = ocdDivisionId.substringAfter(stateDelimiter,"")
                 .substringBefore("/")
-        return Division(ocdDivisionId, country, state)
+        val district = ocdDivisionId.substringAfter(stateDelimiter,"")
+            .substringBefore("/")
+        return Division(ocdDivisionId, country, state, district)
     }
 
     @ToJson

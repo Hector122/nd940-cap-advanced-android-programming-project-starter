@@ -1,6 +1,7 @@
 package com.example.android.politicalpreparedness.election
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.android.politicalpreparedness.database.ElectionDatabase
 import com.example.android.politicalpreparedness.election.repository.ElectionRepository
@@ -20,7 +21,7 @@ class ElectionsViewModel(application: Application) : AndroidViewModel(applicatio
     val upcomingElection: LiveData<List<Election>> get() = _upcomingElection
     
     //completed: Create live data val for saved elections
-   // private val _savedElections = MutableLiveData<List<Election>>()
+    // private val _savedElections = MutableLiveData<List<Election>>()
     val savedElection: LiveData<List<Election>> get() = repository.getAllElections()
     
     private val _navigateToVoterInfo = MutableLiveData<Election>()
@@ -34,15 +35,18 @@ class ElectionsViewModel(application: Application) : AndroidViewModel(applicatio
     
     private fun getSavedElection() {
         viewModelScope.launch {
-          // _savedElections.value = database.electionDao.getAllElections().value
+            // _savedElections.value = database.electionDao.getAllElections().value
         }
     }
     
     private fun getUpcomingElections() {
         viewModelScope.launch {
-            val electionResponse: ElectionResponse = CivicsApi.retrofitService.getElectionsAsync()
-                .await()
-            _upcomingElection.value = electionResponse.elections
+            try {
+                val electionResponse: ElectionResponse = CivicsApi.retrofitService.getElectionsAsync().await()
+                _upcomingElection.value = electionResponse.elections
+            } catch (exception: Exception) {
+                Log.e("getUpcomingElections", "Exception getting upcoming elections")
+            }
         }
     }
     

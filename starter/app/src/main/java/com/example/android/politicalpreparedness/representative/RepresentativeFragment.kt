@@ -27,6 +27,7 @@ import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
 import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
+import okhttp3.internal.wait
 import java.util.Locale
 
 
@@ -39,6 +40,7 @@ class DetailFragment : Fragment() {
         const val REQUEST_LOCATION_PERMISSION = 1
         private const val REQUEST_TURN_DEVICE_LOCATION_ON = 29
         const val ADDRESS_KEY = "ADDRESS_KEY"
+        const val MOTION_KEY = "MOTION_KEY"
     }
     
     //completed: Declare ViewModel
@@ -60,7 +62,10 @@ class DetailFragment : Fragment() {
         if (savedInstanceState != null) {
             binding.address = savedInstanceState.getParcelable(ADDRESS_KEY)
             viewModel.setAddress(binding.address!!)
-        }else{
+            
+            val state = savedInstanceState.getInt(MOTION_KEY)
+            binding.fragmentRepresentativeMotionLayout.jumpToState(state)
+        } else {
             binding.address = Address("", "", "", "Alabama", "")
         }
         
@@ -105,6 +110,7 @@ class DetailFragment : Fragment() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putParcelable(ADDRESS_KEY, binding.address)
+        outState.putInt(MOTION_KEY, binding.fragmentRepresentativeMotionLayout.currentState)
     }
     
     //Result of checking location setting on or off
