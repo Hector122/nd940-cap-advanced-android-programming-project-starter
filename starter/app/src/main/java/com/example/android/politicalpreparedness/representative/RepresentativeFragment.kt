@@ -31,12 +31,14 @@ import java.util.Locale
 
 
 class DetailFragment : Fragment() {
+    private lateinit var binding: FragmentRepresentativeBinding
     
     companion object {
         //completed: Add Constant for Location request
         private const val LOCATION_PERMISSION_INDEX = 0
         const val REQUEST_LOCATION_PERMISSION = 1
         private const val REQUEST_TURN_DEVICE_LOCATION_ON = 29
+        const val ADDRESS_KEY = "ADDRESS_KEY"
     }
     
     //completed: Declare ViewModel
@@ -51,9 +53,16 @@ class DetailFragment : Fragment() {
                              ): View? {
         
         //completed: Establish bindings
-        val binding = FragmentRepresentativeBinding.inflate(inflater)
+        binding = FragmentRepresentativeBinding.inflate(inflater)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+        
+        if (savedInstanceState != null) {
+            binding.address = savedInstanceState.getParcelable(ADDRESS_KEY)
+            viewModel.setAddress(binding.address!!)
+        }else{
+            binding.address = Address("", "", "", "Alabama", "")
+        }
         
         //completed: Define and assign Representative adapter
         val adapter = RepresentativeListAdapter()
@@ -91,6 +100,11 @@ class DetailFragment : Fragment() {
         }
         
         return binding.root
+    }
+    
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable(ADDRESS_KEY, binding.address)
     }
     
     //Result of checking location setting on or off
@@ -156,6 +170,7 @@ class DetailFragment : Fragment() {
             if (location != null) {
                 viewModel.setAddressFromGeoLocation(geoCodeLocation(location))
                 viewModel.getRepresentatives(viewModel.address.value.toString())
+                binding.address = viewModel.address.value
             }
         }
     }

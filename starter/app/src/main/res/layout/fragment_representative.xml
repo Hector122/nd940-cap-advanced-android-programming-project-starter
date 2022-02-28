@@ -5,6 +5,9 @@
 
     <!-- completed: Add data binding node -->
     <data>
+        <variable
+            name="address"
+            type="com.example.android.politicalpreparedness.network.models.Address" />
 
         <variable
             name="viewModel"
@@ -39,7 +42,7 @@
             android:autofillHints="string"
             android:hint="@string/address_line_one"
             android:inputType="textPostalAddress"
-            android:text="@={viewModel.address.line1}"
+            android:text="@={address.line1}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search_title" />
 
@@ -52,7 +55,7 @@
             android:autofillHints="@string/address_line_two"
             android:hint="@string/address_line_two"
             android:inputType="textPostalAddress"
-            android:text="@={viewModel.address.line2}"
+            android:text="@={address.line2}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/address_line_1" />
 
@@ -65,7 +68,7 @@
             android:autofillHints="@string/city"
             android:hint="@string/city"
             android:inputType="textPostalAddress"
-            android:text="@={viewModel.address.city}"
+            android:text="@={address.city}"
             app:layout_constraintEnd_toStartOf="@id/state"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/address_line_2" />
@@ -76,7 +79,7 @@
                     stateValue="@{viewModel.address.state}"-->
         <Spinner
             android:id="@+id/state"
-            stateValue="@{viewModel.address.state}"
+            stateValue="@{address.state}"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:autofillHints=""
@@ -97,7 +100,7 @@
             android:hint="@string/zip"
             android:inputType="number"
             android:maxLength="5"
-            android:text="@={viewModel.address.zip}"
+            android:text="@={address.zip}"
             app:layout_constraintEnd_toEndOf="@id/city"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/city" />

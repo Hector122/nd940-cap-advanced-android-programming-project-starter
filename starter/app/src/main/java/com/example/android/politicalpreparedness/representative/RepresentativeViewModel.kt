@@ -23,9 +23,14 @@ class RepresentativeViewModel : ViewModel() {
     val address: LiveData<Address>
         get() = _address
     
-    init {
-        //Init address for two way binding
-        _address.value = Address("", "", "", "Alabama", "")
+//    init {
+//        //Init address for two way binding
+//        _address.value = Address("", "", "", "Alabama", "")
+//    }
+    
+    fun setAddress(address: Address) {
+        _address.value = address
+        getRepresentatives(address.toString())
     }
     
     //completed: Create function to fetch representatives from API from a provided address
